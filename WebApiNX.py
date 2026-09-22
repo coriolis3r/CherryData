@@ -3,6 +3,9 @@ from fastapi import FastAPI, HTTPException, Body, Query
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 
+import io
+import zipfile
+
 import pandas as pd
 import matplotlib
 
@@ -108,6 +111,11 @@ def normalizar_datos(datos):
 # ============================================================
 # ENDPOINT
 # ============================================================
+@app.get("/health")
+def health():
+    return {
+        "status": "ok"
+    }
 
 @app.post("/pqanalisys")
 @app.post("/pqanalisys/")
